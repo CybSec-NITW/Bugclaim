@@ -7,6 +7,7 @@ colorama==0.4.4
 distlib==0.3.1
 Django==3.1.3
 django-core==1.4.1
+django-cors-headers==3.5.0
 django-filter==2.4.0
 django-markdown==0.8.4
 djangorestframework==3.12.2
@@ -24,8 +25,11 @@ kill==0.0.0
 Markdown==3.3.3
 MarkupSafe==1.1.1
 pgrep==0.0.0
+Pillow==8.0.1
 prompt-toolkit==3.0.8
 protobuf==3.13.0
+psycopg2==2.8.6
+psycopg2-binary==2.8.6
 Pygments==2.7.2
 pyngrok==4.1.10
 python-engineio==3.13.2
