@@ -4,12 +4,13 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 
-
 class CustomLoginView(LoginView):
     def get_response(self):
-        role={'0':"root admin",'1':"root moderator",'2':"company admin",'3':"company moderator",'4':"researcher"}
+        role = {'0': "root admin", '1': "root moderator", '2': "company admin", '3': "company moderator",
+                '4': "researcher"}
         orginal_response = super().get_response()
-        mydata = {"user role": "user is a "+role[self.request.user.user_type],"user_type":self.request.user.user_type, "status": "success"}
+        mydata = {"user role": "user is a " + role[self.request.user.user_type],
+                  "user_type": self.request.user.user_type, "status": "success"}
         orginal_response.data.update(mydata)
         return orginal_response
 
