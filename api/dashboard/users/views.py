@@ -13,6 +13,7 @@ from api.dashboard.users.serializers import RootModSerializer, CompanyAdminSeria
 from users.models import User
 from .serializers import RootAdminSerializer
 
+from rest_auth.views import LoginView
 
 class RootAdminView(generics.RetrieveUpdateAPIView):
     """View To View Or Update User Profile"""
@@ -155,3 +156,13 @@ class UserStatusView(generics.RetrieveAPIView):
         data = {'is_active': user_instance.is_active,
                 'is_superuser': user_instance.is_superuser}
         return Response(data, status=status.HTTP_200_OK)
+
+
+
+class CustomLoginView(LoginView):
+    def get_response(self):
+        role={'0':"root admin",'1':"root moderator",'2':"company admin",'3':"company moderator",'4':"researcher"}
+        orginal_response = super().get_response()
+        mydata = {"user role": "user is a "+role[self.request.user.user_type],"user_type":self.request.user.user_type, "status": "success"}
+        orginal_response.data.update(mydata)
+        return orginal_response
