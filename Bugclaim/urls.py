@@ -21,8 +21,6 @@ from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import routers
 
-from api.dashboard.users.views import CustomLoginView
-
 router = routers.DefaultRouter()
 
 urlpatterns = [
@@ -31,9 +29,8 @@ urlpatterns = [
                   path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
                   path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
                   path('admin/', admin.site.urls),
-                  # path('api/company/', include('company.urls')),
                   path('dashboard/', include('api.dashboard.urls')),
-                  path('login/', CustomLoginView.as_view(), name='my_custom_login')
+                  path('api/', include('api.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

@@ -57,7 +57,7 @@ class UserIsCompanyModOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return request.user.groups.filter(name='4').exists()
+        return request.user.groups.filter(name='3').exists()
 
 
 

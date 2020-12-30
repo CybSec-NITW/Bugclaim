@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -26,7 +25,6 @@ SECRET_KEY = 'v43*mcem69=^9yxjql+y5v4e#6_@^m*q+2w*io2js_b7xtr+q='
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -41,7 +39,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
+    'researcher',
     'users',
+    'root',
+    'company',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-#    'django.middleware.common.CommonMiddleware',
+    #    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -143,22 +144,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'
-    ], 
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
- 
+
     'PAGE_SIZE': 3
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
-#CORS_ORIGIN_WHITELIST = ['http://localhost:3000'] #change to portal.bugclaim.com in prod
-FILE_UPLOAD_PERMISSIONS=0o640
+# CORS_ORIGIN_WHITELIST = ['http://localhost:3000'] #change to portal.bugclaim.com in prod
+FILE_UPLOAD_PERMISSIONS = 0o640
 
 AUTH_USER_MODEL = 'users.User'
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'users.serializers.MyCustomRegistrationSerializer',
+    'REGISTER_SERIALIZER': 'researcher.serializers.MyCustomRegistrationSerializer',
 }
-ACCOUNT_ADAPTER = 'users.adapters.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'researcher.adapters.CustomAccountAdapter'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
