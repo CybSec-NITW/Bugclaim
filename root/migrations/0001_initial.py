@@ -15,31 +15,31 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CompanyMod',
+            name='Rootmod',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('bio', models.TextField(blank=True, default='', max_length=100)),
                 ('country', models.CharField(blank=True, default='', max_length=20)),
                 ('facebook_url', models.URLField(blank=True, default='')),
                 ('twitter_handler', models.CharField(blank=True, default='', max_length=40)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='companymod', to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='rootmod', to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'db_table': 'companymoderator',
+                'db_table': 'rootmoderator',
             },
         ),
         migrations.CreateModel(
-            name='CompanyAdmin',
+            name='RootAdmin',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('bio', models.TextField(blank=True, default='', max_length=100)),
                 ('country', models.CharField(blank=True, default='', max_length=20)),
                 ('facebook_url', models.URLField(blank=True, default='')),
                 ('twitter_handler', models.CharField(blank=True, default='', max_length=40)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='companyadmin', to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='rootadmin', to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'db_table': 'companyadmin',
+                'db_table': 'rootadmin',
             },
         ),
     ]

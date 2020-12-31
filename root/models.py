@@ -1,12 +1,12 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
 
-class CompanyAdmin(models.Model):
+class RootAdmin(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='companyadmin')
+        User, on_delete=models.CASCADE, related_name='rootadmin')
     bio = models.TextField(blank=True, max_length=100, default="")
     country = models.CharField(max_length=20, blank=True, default="")
     facebook_url = models.URLField(blank=True, default="")
@@ -24,13 +24,12 @@ class CompanyAdmin(models.Model):
         return self.user.username
 
     class Meta:
-        db_table = 'companyadmin'
+        db_table = 'rootadmin'
 
 
-class CompanyMod(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='companymod')
-    company = models.ForeignKey(CompanyAdmin, related_name="company_moderators", on_delete=models.CASCADE, null=True)
+class Rootmod(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='rootmod')
+    admin = models.ForeignKey(RootAdmin, related_name="admin_moderators", on_delete=models.CASCADE,null=True)
     bio = models.TextField(blank=True, max_length=100, default="")
     country = models.CharField(max_length=20, blank=True, default="")
     facebook_url = models.URLField(blank=True, default="")
@@ -48,4 +47,4 @@ class CompanyMod(models.Model):
         return self.user.username
 
     class Meta:
-        db_table = 'companymoderator'
+        db_table = 'rootmoderator'

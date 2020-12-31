@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import CompanyAccount
-# Register your models here.
 
-admin.site.register(CompanyAccount)
+# Register your models here.
+from company.models import CompanyAdmin, CompanyMod
+
+admin.site.register(CompanyAdmin)
+admin.site.register(CompanyMod)
