@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from Bugclaim.permissions import UserIsCompanyAdminOrReadOnly, UserIsCompanyModOrReadOnly
 from api.dashboard.company.serializers import CompanyAdminSerializer, CompanyModSerializer
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 

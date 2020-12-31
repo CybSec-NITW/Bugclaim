@@ -157,7 +157,11 @@ FILE_UPLOAD_PERMISSIONS = 0o640
 
 AUTH_USER_MODEL = 'users.User'
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'researcher.serializers.MyCustomRegistrationSerializer',
+    'REGISTER_SERIALIZER': 'api.registration.serializers.MyCustomRegistrationSerializer',
 }
-ACCOUNT_ADAPTER = 'researcher.adapters.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'api.registration.adapters.CustomAccountAdapter'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}

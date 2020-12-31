@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-
 User = settings.AUTH_USER_MODEL
 
 
@@ -29,8 +28,8 @@ class RootAdmin(models.Model):
 
 
 class Rootmod(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='rootmod')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='rootmod')
+    admin = models.ForeignKey(RootAdmin, related_name="admin_moderators", on_delete=models.CASCADE,null=True)
     bio = models.TextField(blank=True, max_length=100, default="")
     country = models.CharField(max_length=20, blank=True, default="")
     facebook_url = models.URLField(blank=True, default="")

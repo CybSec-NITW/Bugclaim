@@ -6,6 +6,7 @@ from Bugclaim.permissions import UserIsRootAdminOrReadOnly, UserIsRootModOrReadO
 from api.dashboard.root.serializers import RootModSerializer
 from .serializers import RootAdminSerializer
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 

@@ -6,6 +6,7 @@ from root.models import RootAdmin, Rootmod
 
 User = get_user_model()
 
+
 class RootAdminSerializer(serializers.ModelSerializer):
     """Serializer To Show User Profile In User Dashboard"""
 
@@ -65,4 +66,3 @@ class RootModSerializer(serializers.ModelSerializer):
     def update_or_create_profile(self, user, profile_data):
         """This always creates a Profile if the User is missing one"""
         Rootmod.objects.update_or_create(user=user, defaults=profile_data)
-

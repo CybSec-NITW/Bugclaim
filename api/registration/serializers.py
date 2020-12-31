@@ -15,7 +15,7 @@ class MyCustomRegistrationSerializer(RegisterSerializer):
         (COMPANYMOD, "Company Moderator"),
         (RESEARCHER, "RESEARCHER"),
     )
-    user_type = serializers.ChoiceField(choices=USER_TYPE_CHOICES)
+    user_type = serializers.ChoiceField(choices=USER_TYPE_CHOICES, read_only=True)
 
     def get_cleaned_data(self):
         data_dict = super().get_cleaned_data()

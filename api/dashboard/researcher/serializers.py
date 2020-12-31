@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from researcher.models import Researcher
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
+
 
 class ResearcherSerializer(serializers.ModelSerializer):
     """Serializer To Show User Profile In User Dashboard"""
@@ -30,5 +32,3 @@ class ResearcherSerializer(serializers.ModelSerializer):
     def update_or_create_profile(self, user, profile_data):
         """This always creates a Profile if the User is missing one"""
         Researcher.objects.update_or_create(user=user, defaults=profile_data)
-
-

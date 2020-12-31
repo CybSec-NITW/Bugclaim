@@ -7,7 +7,9 @@ from rest_framework import status
 from Bugclaim.permissions import UserIsResearcherOrReadOnly
 from api.dashboard.researcher.serializers import ResearcherSerializer
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
+
 
 class ResearcherView(generics.RetrieveUpdateAPIView):
     """View To View Or Update User Profile"""
@@ -35,6 +37,7 @@ class ResearcherView(generics.RetrieveUpdateAPIView):
         # print(serializer.data)
         return Response(serializer.data)
 
+
 class UserStatusView(generics.RetrieveAPIView):
     """View To Return The User Status (Active/Superuser)"""
 
@@ -46,5 +49,3 @@ class UserStatusView(generics.RetrieveAPIView):
         data = {'is_active': user_instance.is_active,
                 'is_superuser': user_instance.is_superuser}
         return Response(data, status=status.HTTP_200_OK)
-
-

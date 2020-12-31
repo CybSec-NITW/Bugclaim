@@ -8,8 +8,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         signup form.
         """
         from allauth.account.utils import user_field
-
         user = super().save_user(request, user, form, False)
-        user_field(user, 'user_type', request.data.get('user_type', ''))
+        user_field(user, 'user_type', request.data.get('userType', ''))
         user.save()
         return user

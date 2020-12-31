@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Group
+from django.db.models import Q
 from rest_framework import permissions
 
 
@@ -35,11 +36,13 @@ class UserIsResearcherOrReadOnly(permissions.BasePermission):
             return True
         return request.user.groups.filter(name='4').exists()
 
+
 class UserIsRootAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
         return request.user.groups.filter(name='0').exists()
+
 
 class UserIsRootModOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -47,11 +50,13 @@ class UserIsRootModOrReadOnly(permissions.BasePermission):
             return True
         return request.user.groups.filter(name='1').exists()
 
+
 class UserIsCompanyAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
         return request.user.groups.filter(name='2').exists()
+
 
 class UserIsCompanyModOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -60,8 +65,22 @@ class UserIsCompanyModOrReadOnly(permissions.BasePermission):
         return request.user.groups.filter(name='3').exists()
 
 
+class IsCompanyAdmin(permissions.BasePermission):
+    def has_permission(self, request, view):
+        print("hellopem")
+        return request.user.groups.filter(name=2).exists()
 
-#example view
+
+class IsRootAdmin(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.groups.filter(name=0).exists()
+
+
+class IsRootModOrAdmin(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.groups.filter(Q(name=0) | Q(name=1)).exists()
+
+# example view
 # class MyView(APIView):
 #     permission_classes = [HasGroupPermission]
 #     required_groups = {
@@ -69,4 +88,3 @@ class UserIsCompanyModOrReadOnly(permissions.BasePermission):
 #         'POST': ['moderators', 'someMadeUpGroup'],
 #         'PUT': ['__all__'],
 #     }
-
