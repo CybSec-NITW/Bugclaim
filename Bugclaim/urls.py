@@ -30,6 +30,9 @@ from rest_auth.registration.views import VerifyEmailView, RegisterView
 router = routers.DefaultRouter()
 
 urlpatterns = [
+                  path('my/',
+                       include('djstripe.contrib.rest_framework.urls', namespace="rest_djstripe")),
+                  path("stripe/", include("djstripe.urls", namespace="djstripe")),
                   path('logout', LogoutView.as_view(), name='user-logout'),
                   path('password/change/', PasswordChangeView.as_view(), name='rest_password_change'),
                   path('password/reset', PasswordResetView.as_view(), name='rest_password_reset'),
@@ -46,6 +49,7 @@ urlpatterns = [
                           name='account_email_verification_sent'),
                   re_path('account-confirm-email/(?P<key>[-:\w]+)/$', VerifyEmailView.as_view(),
                           name='account_confirm_email'),
+                  path('subs/', include("subscription.urls", namespace="payments")),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

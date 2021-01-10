@@ -32,6 +32,13 @@ PyJWT = "==1.7.1"
 PyMySQL = "==0.10.1"
 python-decouple = "*"
 coreapi = "*"
+django-countries = "*"
+django-localflavor = "*"
+markdown = "*"
+python-dateutil = "*"
+stripe = "*"
+razorpay = "*"
+dj-stripe = "*"
 
 [dev-packages]
 
